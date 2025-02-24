@@ -151,7 +151,9 @@ class DivergenceReportSPBR189:
                     })
                 
                 # Verifica valor
-                if float(str(row['VALOR_TOTAL']).replace(',', '.')) != float(str(r189_row[coluna_total_encontrada]).replace(',', '.')):
+                valor_spb = round(float(str(row['VALOR_TOTAL']).replace(',', '.')), 2)
+                valor_r189 = round(float(str(r189_row[coluna_total_encontrada]).replace(',', '.')), 2)
+                if valor_spb != valor_r189:
                     divergences.append({
                         'Tipo': 'Valor divergente',
                         'SPB_ID': spb_id,

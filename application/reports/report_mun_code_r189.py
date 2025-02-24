@@ -10,6 +10,18 @@ class DivergenceReportMUNCODER189:
     
     def __init__(self):
         self.sharepoint_auth = SharePointAuth()
+        
+        # Mapeamento de serviços para material e tipo
+        self.service_mapping = {
+            "14.02": {"material": "80001098", "type": "Assistência Técnica"},
+            "17.01": {"material": "80001110", "type": "Acessoria ou Consultoria"},
+            "14.01": {"material": "80001097", "type": "LUBRIFICACAO, LIMPEZA"},
+            "1.07": {"material": "80001019", "type": "SUPORTE TECNICO EM INFORMATICA"},
+            "3115": {"material": "80001110", "type": "Assessoria E Consultoria"},
+            "1880": {"material": "80001098", "type": "Assistência Técnica - Instalação"},
+            "1.03": {"material": "80001680", "type": "Processamento e Armazenamento"}
+        }
+        
         self.service_cnpj_mapping = {
             "14.02 - Assistência Técnica": {
                 "14.759.173/0002-83", "07.175.725/0042-38", "07.175.725/0014-84",
@@ -132,6 +144,21 @@ class DivergenceReportMUNCODER189:
             - DataFrame: DataFrame com os dados agrupados
         """
         try:
+            # Baixa os arquivos consolidados necessários para obter os números das notas fiscais
+            qpe_consolidado = self.sharepoint_auth.baixar_arquivo_sharepoint(
+                'QPE_consolidado.xlsx',
+                '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+            )
+            
+            spb_consolidado = self.sharepoint_auth.baixar_arquivo_sharepoint(
+                'SPB_consolidado.xlsx',
+                '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+            )
+            
+            # Lê os arquivos consolidados
+            qpe_data = pd.read_excel(qpe_consolidado) if qpe_consolidado else pd.DataFrame()
+            spb_data = pd.read_excel(spb_consolidado) if spb_consolidado else pd.DataFrame()
+            
             # Verifica qual coluna de total está presente no DataFrame
             coluna_total = None
             for col in self.colunas_total:
@@ -164,6 +191,63 @@ class DivergenceReportMUNCODER189:
             grouped_data = grouped_data.sort_values(
                 by=['Municipality Code', 'CNPJ - WEG', 'Invoice number']
             )
+            
+            # Adiciona a coluna NF
+            def get_nota_fiscal(row):
+                try:
+                    invoice_number = str(row['Invoice number']).strip()
+                    
+                    if invoice_number.startswith('QPE'):
+                        # Busca no QPE_consolidado
+                        if not qpe_data.empty and 'QPE_ID' in qpe_data.columns and 'NOTA_FISCAL' in qpe_data.columns:
+                            matching_rows = qpe_data[qpe_data['QPE_ID'] == invoice_number]
+                            if not matching_rows.empty:
+                                matching_nota = matching_rows['NOTA_FISCAL'].iloc[0]
+                                return str(matching_nota).strip()
+                    elif invoice_number.startswith('SPB'):
+                        # Busca no SPB_consolidado
+                        if not spb_data.empty and 'SPB_ID' in spb_data.columns and 'Num_Nota' in spb_data.columns:
+                            matching_rows = spb_data[spb_data['SPB_ID'] == invoice_number]
+                            if not matching_rows.empty:
+                                matching_nota = matching_rows['Num_Nota'].iloc[0]
+                                return str(matching_nota).strip()
+                    return ''
+                except Exception as e:
+                    print(f"Erro ao processar invoice number {invoice_number}: {str(e)}")
+                    return ''
+            
+            grouped_data['NF'] = grouped_data.apply(get_nota_fiscal, axis=1)
+            
+            # Aplica o mapeamento para criar as novas colunas
+            def get_material_and_type(row):
+                try:
+                    # Pega o código do serviço (antes do hífen, se houver)
+                    service_code = str(row['Municipality Code']).strip().split(' - ')[0].strip()
+                    
+                    # Busca no mapeamento
+                    if service_code in self.service_mapping:
+                        return pd.Series([
+                            self.service_mapping[service_code]['material'],
+                            self.service_mapping[service_code]['type']
+                        ])
+                    return pd.Series(['', ''])
+                except Exception as e:
+                    print(f"Erro ao processar código de serviço {service_code}: {str(e)}")
+                    return pd.Series(['', ''])
+            
+            # Aplica o mapeamento para criar as novas colunas
+            grouped_data[['MATERIAL', 'Invoice_Type']] = grouped_data.apply(get_material_and_type, axis=1)
+            
+            # Reordena as colunas na ordem especificada
+            grouped_data = grouped_data.reindex(columns=[
+                'CNPJ - WEG',
+                'Municipality Code',
+                'MATERIAL',
+                'Invoice_Type',
+                'NF',
+                'Site Name - WEG 2',
+                'Total Geral'
+            ])
             
             has_divergences = not cnpj_divergences.empty
             
