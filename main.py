@@ -525,7 +525,7 @@ class MainWindow:
                     print(f"Baixando arquivo: {arquivo}")
                     conteudo = self.auth.baixar_arquivo_sharepoint(
                         arquivo,
-                        '/teams/BR-TI-TIN/AutomaoFinanas/R189'
+                        '/sites/portfolio/automacao-financeira/R189'
                     )
                     
                     if not conteudo:
@@ -568,7 +568,7 @@ class MainWindow:
                     print(f"Baixando arquivo: {arquivo}")
                     conteudo = self.auth.baixar_arquivo_sharepoint(
                         arquivo,
-                        '/teams/BR-TI-TIN/AutomaoFinanas/R189'
+                        '/sites/portfolio/automacao-financeira/R189'
                     )
                     
                     if not conteudo:
