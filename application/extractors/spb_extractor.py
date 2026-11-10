@@ -92,7 +92,7 @@ class SPBExtractor:
                 if isinstance(pdf_file, str):
                     pdf_content = self.sharepoint_auth.baixar_arquivo_sharepoint(
                         pdf_file, 
-                        '/teams/BR-TI-TIN/AutomaoFinanas/SPB'
+                        '/sites/portfolio/automacao-financeira/SPB'
                     )
                 else:
                     # Se não for string, já é o conteúdo do arquivo
@@ -137,14 +137,14 @@ class SPBExtractor:
             # Exclui o consolidado anterior se existir
             self.sharepoint_auth.excluir_arquivo_sharepoint(
                 'SPB_consolidado.xlsx',
-                '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+                '/sites/portfolio/automacao-financeira/CONSOLIDADO'
             )
             
             # Salva o novo consolidado
             sucesso = self.sharepoint_auth.enviar_para_sharepoint(
                 output,
                 'SPB_consolidado.xlsx',
-                '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+                '/sites/portfolio/automacao-financeira/CONSOLIDADO'
             )
             
             if sucesso:
