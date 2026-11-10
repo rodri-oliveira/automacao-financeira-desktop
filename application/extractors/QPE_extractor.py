@@ -86,8 +86,8 @@ class QPEExtractor:
         Cada PDF selecionado gera uma nova linha no consolidado.
         """
         dados_consolidados = []
-        pasta_qpe = '/teams/BR-TI-TIN/AutomaoFinanas/QPE'
-        pasta_consolidado = '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+        pasta_qpe = '/sites/portfolio/automacao-financeira/QPE'
+        pasta_consolidado = '/sites/portfolio/automacao-financeira/CONSOLIDADO'
         nome_arquivo = 'QPE_consolidado.xlsx'
         
         # Processa cada PDF selecionado
