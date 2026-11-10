@@ -256,7 +256,7 @@ class DivergenceReportQPER189:
             if self.sharepoint_auth.enviar_para_sharepoint(
                 excel_file,
                 filename,
-                '/teams/BR-TI-TIN/AutomaoFinanas/RELATÓRIOS/QPE_R189'
+                '/sites/portfolio/automacao-financeira/RELATÓRIOS/QPE_R189'
             ):
                 return True, f"Relatório salvo com sucesso: {filename}"
             else:
@@ -276,7 +276,7 @@ class DivergenceReportQPER189:
             # Tenta baixar os arquivos consolidados
             qpe_consolidado = self.sharepoint_auth.baixar_arquivo_sharepoint(
                 'QPE_consolidado.xlsx',
-                '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+                '/sites/portfolio/automacao-financeira/CONSOLIDADO'
             )
             
             if not qpe_consolidado:
@@ -284,7 +284,7 @@ class DivergenceReportQPER189:
             
             r189_consolidado = self.sharepoint_auth.baixar_arquivo_sharepoint(
                 'R189_consolidado.xlsx',
-                '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+                '/sites/portfolio/automacao-financeira/CONSOLIDADO'
             )
             
             if not r189_consolidado:
