@@ -147,12 +147,12 @@ class DivergenceReportMUNCODER189:
             # Baixa os arquivos consolidados necessários para obter os números das notas fiscais
             qpe_consolidado = self.sharepoint_auth.baixar_arquivo_sharepoint(
                 'QPE_consolidado.xlsx',
-                '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+                '/sites/portfolio/automacao-financeira/CONSOLIDADO'
             )
             
             spb_consolidado = self.sharepoint_auth.baixar_arquivo_sharepoint(
                 'SPB_consolidado.xlsx',
-                '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+                '/sites/portfolio/automacao-financeira/CONSOLIDADO'
             )
             
             # Lê os arquivos consolidados
@@ -276,12 +276,12 @@ class DivergenceReportMUNCODER189:
             # Busca os arquivos consolidados no SharePoint
             mun_code_file = self.sharepoint_auth.baixar_arquivo_sharepoint(
                 'Municipality_Code_consolidado.xlsx',
-                '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+                '/sites/portfolio/automacao-financeira/CONSOLIDADO'
             )
             
             r189_file = self.sharepoint_auth.baixar_arquivo_sharepoint(
                 'R189_consolidado.xlsx',
-                '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+                '/sites/portfolio/automacao-financeira/CONSOLIDADO'
             )
             
             if not mun_code_file or not r189_file:
@@ -346,7 +346,7 @@ class DivergenceReportMUNCODER189:
                 self.sharepoint_auth.enviar_para_sharepoint(
                     report_file,
                     report_name,
-                    '/teams/BR-TI-TIN/AutomaoFinanas/RELATÓRIOS/MUN_CODE'
+                    '/sites/portfolio/automacao-financeira/RELATÓRIOS/MUN_CODE'
                 )
                 
                 message += f"\nRelatório gerado com sucesso: {report_name}"
