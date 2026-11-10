@@ -8,10 +8,10 @@ from domain.validators.r189_validator import R189Validator  # Adicionar o valida
 from application.reports.divergence_report import DivergenceReport  # Gerar relatórios de divergência
 
 # URL base do SharePoint
-BASE_URL = "https://weg365.sharepoint.com/sites/BR-TI-TIN/AutomaoFinanas/_api/web"
+BASE_URL = os.getenv('SHAREPOINT_SITE_URL', '')
 
 # Token de acesso - você já tem uma forma de obtê-lo em seu projeto, então só usaremos o token aqui
-ACCESS_TOKEN = "SEU_TOKEN_AQUI"
+ACCESS_TOKEN = os.getenv('SHAREPOINT_ACCESS_TOKEN', '')
 
 # Cabeçalhos para a requisição (incluindo o token)
 HEADERS = {
