@@ -228,7 +228,7 @@ class DivergenceReportSPBR189:
             if self.sharepoint_auth.enviar_para_sharepoint(
                 excel_file,
                 filename,
-                '/teams/BR-TI-TIN/AutomaoFinanas/RELATÓRIOS/SPO_R189'
+                '/sites/portfolio/automacao-financeira/RELATÓRIOS/SPO_R189'
             ):
                 return True, f"Relatório salvo com sucesso: {filename}"
             else:
@@ -248,7 +248,7 @@ class DivergenceReportSPBR189:
             # Tenta baixar os arquivos consolidados
             spb_consolidado = self.sharepoint_auth.baixar_arquivo_sharepoint(
                 'SPB_consolidado.xlsx',
-                '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+                '/sites/portfolio/automacao-financeira/CONSOLIDADO'
             )
             
             if not spb_consolidado:
@@ -256,7 +256,7 @@ class DivergenceReportSPBR189:
             
             r189_consolidado = self.sharepoint_auth.baixar_arquivo_sharepoint(
                 'R189_consolidado.xlsx',
-                '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+                '/sites/portfolio/automacao-financeira/CONSOLIDADO'
             )
             
             if not r189_consolidado:
@@ -264,7 +264,7 @@ class DivergenceReportSPBR189:
 
             nfserv_consolidado = self.sharepoint_auth.baixar_arquivo_sharepoint(
                 'NFSERV_consolidado.xlsx',
-                '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+                '/sites/portfolio/automacao-financeira/CONSOLIDADO'
             )
             
             if not nfserv_consolidado:
