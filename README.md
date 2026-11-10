@@ -33,7 +33,7 @@ main.py             Ponto de entrada
 
 ## Relação com a versão web
 
-Esta aplicação representa o formato **desktop** do trabalho de automação. A estrutura de processamento também aparece na evolução para [API](https://github.com/rodri-oliveira/automacao-contratos-orange-weg-backend) e [interface web](https://github.com/rodri-oliveira/automacao-contratos-financas-orange-weg-frontEnd).
+Esta aplicação representa o formato **desktop** do trabalho de automação. A estrutura de processamento também aparece na evolução para [API](https://github.com/rodri-oliveira/automacao-financeira-api) e [interface web](https://github.com/rodri-oliveira/automacao-financeira-web).
 
 ## Como analisar
 
