@@ -106,7 +106,7 @@ class MunicipalityCodeExtractor:
 
             # Define o nome do arquivo e o caminho da pasta CONSOLIDADO
             nome_arquivo_excel = "Municipality_Code_consolidado.xlsx"
-            pasta_consolidado = '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+            pasta_consolidado = '/sites/portfolio/automacao-financeira/CONSOLIDADO'
             
             # Envia apenas para a pasta CONSOLIDADO
             self.sharepoint_auth.enviar_para_sharepoint(
