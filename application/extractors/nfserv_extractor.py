@@ -83,8 +83,8 @@ class NFServExtractor:
         Cada PDF selecionado gera uma nova linha no consolidado.
         """
         dados_consolidados = []
-        pasta_nfserv = '/teams/BR-TI-TIN/AutomaoFinanas/NFSERV'
-        pasta_consolidado = '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+        pasta_nfserv = '/sites/portfolio/automacao-financeira/NFSERV'
+        pasta_consolidado = '/sites/portfolio/automacao-financeira/CONSOLIDADO'
         nome_arquivo = 'NFSERV_consolidado.xlsx'
         
         # Processa cada PDF selecionado
