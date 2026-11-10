@@ -65,3 +65,9 @@ Thumbs.db
 
 # Arquivos de testes
 test-results/
+
+# Configuracoes locais e segredos (nao versionar)
+.env*
+!.env.example
+*.key
+*.p12
