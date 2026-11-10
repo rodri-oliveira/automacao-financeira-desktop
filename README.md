@@ -39,7 +39,7 @@ Esta aplicação representa o formato **desktop** do trabalho de automação. A 
 
 As dependências estão em `requirements.txt` e a aplicação utiliza `main.py` como entrada principal.
 
-**Limitação:** a obtenção dos arquivos e parte das rotinas dependiam de serviços externos da implantação original. Não foi validada nesta revisão uma execução autônoma. Avalie o código com dados fictícios e sem acesso a ambientes corporativos.
+**Pré-requisitos para demonstração:** arquivos de exemplo com estruturas compatíveis e configuração da origem dos documentos. As rotinas de obtenção de arquivos utilizam integrações que precisam ser configuradas.
 
 ## Competências demonstradas
 
@@ -49,4 +49,4 @@ Automação Python, processamento de dados, interface desktop, integração com 
 
 O README anterior registrava titularidade da **WEG S.A.** sobre este projeto. Essa declaração de origem é preservada por cautela até que a titularidade e as permissões de redistribuição sejam esclarecidas. A publicação deste README não modifica direitos sobre o código.
 
-**Status:** projeto histórico de portfólio, com dependências externas não revalidadas.
+**Status:** implementação desktop documentada; integrações dependem de configuração adicional.
