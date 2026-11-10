@@ -209,7 +209,7 @@ class DivergenceReportR189:
             if self.sharepoint_auth.enviar_para_sharepoint(
                 excel_file,
                 filename,
-                '/teams/BR-TI-TIN/AutomaoFinanas/RELATÓRIOS/R189'
+                '/sites/portfolio/automacao-financeira/RELATÓRIOS/R189'
             ):
                 return True, f"Relatório salvo com sucesso: {filename}"
             else:
@@ -229,7 +229,7 @@ class DivergenceReportR189:
             # Tenta baixar o arquivo consolidado
             consolidado = self.sharepoint_auth.baixar_arquivo_sharepoint(
                 'R189_consolidado.xlsx',
-                '/teams/BR-TI-TIN/AutomaoFinanas/CONSOLIDADO'
+                '/sites/portfolio/automacao-financeira/CONSOLIDADO'
             )
             
             if not consolidado:
