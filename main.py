@@ -19,11 +19,11 @@ from presentation.views.main_window import MainWindow
 # Constantes
 SITE_URL = os.getenv('SITE_URL')
 PASTAS = {
-    'R189': "/teams/BR-TI-TIN/AutomaoFinanas/R189",
-    'QPE': "/teams/BR-TI-TIN/AutomaoFinanas/QPE",
-    'SPB': "/teams/BR-TI-TIN/AutomaoFinanas/SPB",
-    'NFSERV': "/teams/BR-TI-TIN/AutomaoFinanas/NFSERV",
-    'MUN_CODE': "/teams/BR-TI-TIN/AutomaoFinanas/R189"  # Usa a mesma pasta do R189
+    'R189': os.getenv('SP_FOLDER_R189', '/R189'),
+    'QPE': os.getenv('SP_FOLDER_QPE', '/QPE'),
+    'SPB': os.getenv('SP_FOLDER_SPB', '/SPB'),
+    'NFSERV': os.getenv('SP_FOLDER_NFSERV', '/NFSERV'),
+    'MUN_CODE': os.getenv('SP_FOLDER_MUN_CODE', os.getenv('SP_FOLDER_R189', '/R189')),
 }
 
 def buscar_arquivos(auth, pasta):
